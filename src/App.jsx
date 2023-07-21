@@ -56,6 +56,11 @@ const App = () => {
 
   return (
     <div className="w-screen h-screen">
+      {errorMessage && (
+        <div className="text-red-600 text-center p-2 bg-black">
+          {errorMessage}
+        </div>
+      )}
       <div
         className="w-screen h-[220px] relative"
         style={{
@@ -64,11 +69,6 @@ const App = () => {
           backgroundSize: "cover",
         }}
       >
-        {errorMessage && (
-          <div className="text-red-600 text-center p-2 bg-black">
-            {errorMessage}
-          </div>
-        )}
         <div className="flex flex-col items-center">
           <p className="font-display text-white text-xl pt-8">
             IP Address Tracker
@@ -77,7 +77,7 @@ const App = () => {
         <div className=" flex justify-center py-12">
           <input
             type="search"
-            className="w-96 p-2.5 z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg"
+            className="w-64 p-2.5 z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg sm:w-96"
             placeholder="Search for any IP address or domain"
             required
             value={ipAddress}
@@ -111,28 +111,36 @@ const App = () => {
           </button>
         </div>
 
-        <div className="absolute inset-x-5 bottom-0">
-          <div className="flex flex-row justify-evenly divide-x divide-trueGray-50/75 bg-pink-500 shadow-slate-50 text-slate-500 font-display p-10 rounded-lg ">
-            <p>IP Address{address.ip}</p>
-            <p>Timezone{address.location ? address.location.timezone : ""}</p>
-            <p>
-              Location{" "}
+        <div className="absolute inset-x-5 top-[170px] z-50">
+          <div className="flex flex-row justify-evenly divide-x divide-trueGray-50/75 bg-white shadow-slate-50 text-slate-500 font-display p-10 rounded-lg ">
+            {/* flex flex-col justify-around gap-4 text-center text-3xl
+            font-extrabold */}
+            <h2>IP Address</h2>
+            <p className="text-black">{address.ip}</p>
+            <h2>Location</h2>
+            <p className="text-black">
+              {" "}
               {address.location
                 ? `${address.location.city}, ${address.location.region}, ${address.location.country}`
                 : ""}
             </p>
-            <p>ISP{address.isp}</p>
+            <h2>Timezone</h2>
+            <p className="text-black">
+              {address.location ? address.location.timezone : ""}
+            </p>
+            <h2>ISP</h2>
+            <p className="text-black font-bold">{address.isp}</p>
           </div>
         </div>
-        <Map />
+        <div className="">
+          <Map />
+        </div>
       </div>
     </div>
   );
 };
 
 export default App;
-// 37.38605
-// -122.08385
 
 {
   /* IP Address
