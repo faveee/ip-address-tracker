@@ -5,12 +5,12 @@ export default {
     fontFamily: {
       display: ["Rubik", "sans-serif"],
     },
-    screens: {
-'sm': '640px',
-'md': '768px',
-'xl': '1280px',
-'2xl': '1536px',
-    },
+//     screens: {
+// 'sm': '640px',
+// 'md': '768px',
+// 'xl': '1280px',
+// '2xl': '1536px',
+//     },
     
     extend: {},
   },

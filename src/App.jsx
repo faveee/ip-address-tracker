@@ -62,7 +62,7 @@ const App = () => {
         </div>
       )}
       <div
-        className="w-screen h-[220px] relative"
+        className="w-screen h-[270px] relative"
         style={{
           backgroundImage: `url(/pattern.png)`,
           backgroundRepeat: "no-repeat",
@@ -70,11 +70,11 @@ const App = () => {
         }}
       >
         <div className="flex flex-col items-center">
-          <p className="font-display text-white text-xl pt-8">
+          <p className="font-display text-white text-xl pt-5">
             IP Address Tracker
           </p>
         </div>
-        <div className=" flex justify-center py-12">
+        <div className=" flex justify-center py-8">
           <input
             type="search"
             className="w-64 p-2.5 z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg sm:w-96"
@@ -111,28 +111,47 @@ const App = () => {
           </button>
         </div>
 
-        <div className="absolute inset-x-5 top-[170px] z-50">
-          <div className="flex flex-row justify-evenly divide-x divide-trueGray-50/75 bg-white shadow-slate-50 text-slate-500 font-display p-10 rounded-lg ">
-            {/* flex flex-col justify-around gap-4 text-center text-3xl
-            font-extrabold */}
-            <h2>IP Address</h2>
-            <p className="text-black">{address.ip}</p>
-            <h2>Location</h2>
-            <p className="text-black">
+        <div className="absolute left-0 right-0 mx-auto top-[135px] md:-bottom-16 md:divide-x bg-white rounded-2xl flex flex-col md:flex-row justify-between items-center w-3/4 h-74 md:h-32 px-8 z-[9999] py-4 md:py-0 text-center">
+          <div>
+            <span className="text-gray-400 text-xs font-bold font-display uppercase">
+              IP Address
+            </span>
+            <p className="text-gray-900 text-lg font-bold font-display">
+              {address.ip}
+            </p>
+          </div>
+          <div>
+            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+              Location
+            </span>
+            <p className="text-gray-900 text-lg font-bold">
               {" "}
               {address.location
                 ? `${address.location.city}, ${address.location.region}, ${address.location.country}`
                 : ""}
+        
             </p>
-            <h2>Timezone</h2>
-            <p className="text-black">
+          </div>
+          <div>
+            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+              Timezone
+            </span>
+            <p className="text-gray-900 text-lg font-bold">
+          
               {address.location ? address.location.timezone : ""}
             </p>
-            <h2>ISP</h2>
-            <p className="text-black font-bold">{address.isp}</p>
+          </div>
+          <div>
+            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+              ISP
+            </span>
+            <p className="text-gray-900 text-lg font-bold">
+            
+              {address.isp}
+            </p>
           </div>
         </div>
-        <div className="">
+        <div>
           <Map />
         </div>
       </div>

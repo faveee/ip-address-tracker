@@ -3,14 +3,9 @@
   padding: 0;
 }
 
-@media only screen and (max-width: 640px) {
-  .leaflet-container {
-    height: 670px;
-  }
-}
 
 .leaflet-container {
-  height: 470px;
+  height: 670px;
 }
 
 .leaflet-pane {
