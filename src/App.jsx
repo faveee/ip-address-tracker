@@ -1,10 +1,12 @@
+// App.js
 import "./App.css";
-import { useState, useMemo } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { useState } from "react";
+import IPAddressDetails from "./components/IPAddressDetails";
+import MapDisplay from "./components/MapDisplay";
 
 const App = () => {
   const [address, setAddress] = useState([]);
-  const [ipAddress, setIpAddress] = useState(""); //162.212.154.31
+  const [ipAddress, setIpAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const fetchData = () => {
@@ -18,12 +20,10 @@ const App = () => {
         }
         return response.json();
       })
-
       .then((data) => {
         setAddress(data);
         setErrorMessage("");
       })
-
       .catch((error) => {
         setAddress([]);
         setErrorMessage("Error! " + error.message);
@@ -32,27 +32,8 @@ const App = () => {
   };
 
   const handleSearch = () => {
-    fetchData(); //Fetch data for the new IP address when button is clicked
+    fetchData();
   };
-
-  const position = useMemo(() => {
-    if (address.location) return [address.location.lat, address.location.lng];
-
-    return [51.505, -0.09];
-  }, [address]);
-
-  const Map = useMemo(() => {
-    return () => (
-      <MapContainer center={position} zoom={12}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        <Marker position={position} />
-      </MapContainer>
-    );
-  }, [position]);
 
   return (
     <div className="w-screen h-screen">
@@ -88,7 +69,6 @@ const App = () => {
             className="p-2 text-sm bg-gray-900 rounded-r-lg border-gray-900 hover:bg-red-500"
             onClick={handleSearch}
           >
-            {" "}
             <svg
               fill="#ffffff"
               width="19px"
@@ -110,56 +90,11 @@ const App = () => {
             </svg>
           </button>
         </div>
-
-        
-          <div className="details absolute left-0 right-0 mx-auto top-[135px] md:-bottom-16 md:divide-x border-2 sm:space-x-3 bg-white rounded-2xl flex flex-col md:flex-row justify-between items-center w-3/4 h-74 md:h-32 px-8 z-[9999] py-4 md:py-0 text-center">
-          <div>
-            <span className="text-gray-400 text-xs font-bold font-display uppercase">
-              IP Address
-            </span>
-            <p className="text-gray-900 text-lg font-bold font-display">
-              {address.ip}
-            </p>
-          </div>
-          <div>
-            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
-              Location
-            </span>
-            <p className="text-gray-900 text-lg font-bold">
-              {" "}
-              {address.location
-                ? `${address.location.city}, ${address.location.region}, ${address.location.country}`
-                : ""}
-            </p>
-          </div>
-          <div>
-            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
-              Timezone
-            </span>
-            <p className="text-gray-900 text-lg font-bold">
-              {address.location ? address.location.timezone : ""}
-            </p>
-          </div>
-          <div>
-            <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
-              ISP
-            </span>
-            <p className="text-gray-900 text-lg font-bold">{address.isp}</p>
-          </div>
-        </div>
-        <div>
-          <Map />
-        </div>
+        <IPAddressDetails address={address} />
+        <MapDisplay address={address} />
       </div>
     </div>
   );
 };
 
 export default App;
-
-{
-  /* IP Address
-            Location
-            Timezone
-            Isp */
-}
