@@ -13,7 +13,7 @@ const IPAddressDetails = ({ address }) => {
         </p>
       </div>
       <div>
-        <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+        <span className="text-gray-400 text-xs font-bold font-display uppercase">
           Location
         </span>
         <p className="text-gray-900 text-lg font-bold">
@@ -23,7 +23,7 @@ const IPAddressDetails = ({ address }) => {
         </p>
       </div>
       <div>
-        <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+        <span className="text-gray-400 text-xs font-bold font-display uppercase">
           Timezone
         </span>
         <p className="text-gray-900 text-lg font-bold">
@@ -31,7 +31,7 @@ const IPAddressDetails = ({ address }) => {
         </p>
       </div>
       <div>
-        <span className="text-gray-400 text-xs font-bold font-rubik uppercase">
+        <span className="text-gray-400 text-xs font-bold font-display uppercase">
           ISP
         </span>
         <p className="text-gray-900 text-lg font-bold">{address.isp}</p>
