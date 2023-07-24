@@ -1,6 +1,5 @@
-// App.js
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IPAddressDetails from "./components/IPAddressDetails";
 import MapDisplay from "./components/MapDisplay";
 
@@ -8,6 +7,21 @@ const App = () => {
   const [address, setAddress] = useState([]);
   const [ipAddress, setIpAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    const loadCurrentIp = async () => {
+      fetch("https://api.ipify.org/")
+        .then((response) => response.text())
+        .then((myIp) => {
+          setIpAddress(myIp);
+          setTimeout(() => {
+            handleSearch();
+          }, 0);
+        })
+    };
+
+    loadCurrentIp();
+  }, []);
 
   const fetchData = () => {
     fetch(

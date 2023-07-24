@@ -1,4 +1,3 @@
-// IPAddressDetails.js
 import React from "react";
 
 const IPAddressDetails = ({ address }) => {
